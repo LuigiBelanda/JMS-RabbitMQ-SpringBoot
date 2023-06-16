@@ -13,9 +13,12 @@ public class Publisher {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        String message = "First message";
+        // String message = "First message";
+        String[] messages = {"First", "Second", "Third", "Fourth"};
 
-        channel.basicPublish("", "Queue-1", null, message.getBytes());
+        for (String message : messages) {
+            channel.basicPublish("", "Queue-1", null, message.getBytes());
+        }
 
         channel.close();
         connection.close();
